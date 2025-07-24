@@ -8,7 +8,7 @@ class InventorySystem {
         $this->loadInventory();
     }
     
-    // Load inventory from file
+    // LOAD PRODUCT FROM INVENTORY
     private function loadInventory() {
         if (file_exists($this->filename)) {
             $data = file_get_contents($this->filename);
@@ -19,7 +19,7 @@ class InventorySystem {
         }
     }
     
-    // Save inventory to file
+    // SAVE INVENTORY TO FILE
     private function saveInventory() {
         $data = json_encode($this->inventory, JSON_PRETTY_PRINT);
         if (file_put_contents($this->filename, $data)) {
@@ -31,7 +31,7 @@ class InventorySystem {
         }
     }
     
-    // Display main menu
+    // DISPLAY MAIN MENU
     private function displayMenu() {
         echo "\n" . str_repeat("=", 50) . "\n";
         echo "           INVENTORY MANAGEMENT SYSTEM\n";
@@ -47,7 +47,7 @@ class InventorySystem {
         echo "Choose an option (1-7): ";
     }
     
-    // Get user input with validation
+    // GET USER INPUT
     private function getInput($prompt, $type = 'string') {
         echo $prompt;
         $input = trim(fgets(STDIN));
@@ -70,7 +70,7 @@ class InventorySystem {
         return $input;
     }
     
-    // Add a new product
+    // ADD NEW PRODUCT
     private function addProduct() {
         echo "\n--- ADD NEW PRODUCT ---\n";
         
@@ -110,7 +110,7 @@ class InventorySystem {
         echo "Product '$name' added successfully!\n";
     }
     
-    // Update existing product
+    // UPDATE THE EXISTING PRODUCT
     private function updateProduct($productId = null) {
         echo "\n--- UPDATE PRODUCT ---\n";
         
@@ -177,7 +177,7 @@ class InventorySystem {
         echo "Product updated successfully!\n";
     }
     
-    // Remove a product
+    // REMOVE THE PRODUCT
     private function removeProduct() {
         echo "\n--- REMOVE PRODUCT ---\n";
         
@@ -202,7 +202,7 @@ class InventorySystem {
         }
     }
     
-    // Search for products
+    // FIND THE PRODUCT
     private function searchProduct() {
         echo "\n--- SEARCH PRODUCTS ---\n";
         
@@ -225,7 +225,7 @@ class InventorySystem {
         }
     }
     
-    // List all products
+    // LIST ALL THE PRODUCT
     private function listAllProducts() {
         echo "\n--- ALL PRODUCTS ---\n";
         
@@ -276,7 +276,7 @@ class InventorySystem {
         $this->displaySummary();
     }
     
-    // Display a single product
+    // DISPLAY ONE PRODUCT
     private function displayProduct($id, $product) {
         echo str_repeat("-", 40) . "\n";
         echo "ID: $id\n";
@@ -293,19 +293,19 @@ class InventorySystem {
         }
     }
     
-    // Display multiple products
+    // DISPLAY MANY PRODUCT
     private function displayProducts($products) {
         if (empty($products)) {
             echo "No products to display.\n";
             return;
         }
         
-        // Header
+        // HEADER
         printf("%-10s %-20s %-8s %-10s %-15s %-12s\n", 
                "ID", "Name", "Qty", "Price", "Category", "Total Value");
         echo str_repeat("-", 80) . "\n";
         
-        // Products
+        // PRODUCTS
         foreach ($products as $id => $product) {
             $totalValue = $product['quantity'] * $product['price'];
             printf("%-10s %-20s %-8d $%-9.2f %-15s $%-11.2f\n",
@@ -319,7 +319,7 @@ class InventorySystem {
         echo str_repeat("-", 80) . "\n";
     }
     
-    // Display inventory summary
+    // DISPLAY SUMMARY
     private function displaySummary() {
         $totalProducts = count($this->inventory);
         $totalQuantity = array_sum(array_column($this->inventory, 'quantity'));
@@ -338,7 +338,7 @@ class InventorySystem {
         echo "Categories: " . implode(', ', array_keys($categories)) . "\n";
     }
     
-    // Main application loop
+    // LOOP
     public function run() {
         echo "Welcome to the Inventory Management System!\n";
         
@@ -374,14 +374,14 @@ class InventorySystem {
                     echo "Invalid option. Please choose 1-7.\n";
             }
             
-            // Pause before showing menu again
+            
             echo "\nPress Enter to continue...";
             fgets(STDIN);
         }
     }
 }
 
-// Initialize and run the inventory system
+
 $inventory = new InventorySystem();
 $inventory->run();
 
