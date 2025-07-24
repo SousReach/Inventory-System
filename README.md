@@ -1,0 +1,2 @@
+# Inventory-System
+MINI PROJECT
